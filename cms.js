@@ -21,6 +21,7 @@ $(document).ready(function() {
   var titleInput = $("#title");
   var cmsForm = $("#cms");
   var postCategorySelect = $("#category");
+  var uploadInput = $("#upload");
   // Giving the postCategorySelect a default value
   postCategorySelect.val("Personal");
   // Adding an event listener for when the form is submitted
@@ -34,6 +35,7 @@ $(document).ready(function() {
     var newPost = {
       title: titleInput.val().trim(),
       description: descriptionInput.val().trim(),
+      upload: uploadInput.val().trim(), 
       category: postCategorySelect.val()
     };
 
@@ -66,6 +68,7 @@ $(document).ready(function() {
         titleInput.val(data.title);
         descriptionInput.val(data.description);
         postCategorySelect.val(data.category);
+        uploadInput.val(data.upload)
         // If we have a post with this id, set a flag for us to know to update the post
         // when we hit submit
         updating = true;
@@ -87,7 +90,6 @@ $(document).ready(function() {
 
 
   /* TEST CASE */
-  var testbox = $("#test");
 
   function fileUpload(req, res) {
     if (req.url == '/upload' && req.method.toLowerCase() == 'post') {
